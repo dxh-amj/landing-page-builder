@@ -1,0 +1,86 @@
+---
+export interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+  ogType?: "website" | "article" | "profile";
+  twitterCard?: "summary" | "summary_large_image" | "app" | "player";
+  noindex?: boolean;
+  nofollow?: boolean;
+}
+
+const {
+  title = "Astro Performance Template",
+  description = "High-performance Astro starter template with Tailwind CSS 4, optimized for SEO and modern web standards.",
+  canonical = Astro.url.href,
+  ogImage = "/og-image.jpg",
+  ogType = "website",
+  twitterCard = "summary_large_image",
+  noindex = false,
+  nofollow = false,
+} = Astro.props;
+
+const siteName = "Astro Performance Template";
+const robots = [
+  !noindex && "index",
+  !nofollow && "follow",
+  "max-snippet:-1",
+  "max-image-preview:large",
+  "max-video-preview:-1",
+]
+  .filter(Boolean)
+  .join(", ");
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: siteName,
+  description: description,
+  url: Astro.site,
+  potentialAction: {
+    "@type": "SearchAction",
+    target: `${Astro.site}search?q={search_term_string}`,
+    "query-input": "required name=search_term_string",
+  },
+};
+---
+
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta name="description" content={description} />
+<meta name="robots" content={robots} />
+<link rel="canonical" href={canonical} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content={ogType} />
+<meta property="og:url" content={canonical} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={new URL(ogImage, Astro.site)} />
+<meta property="og:site_name" content={siteName} />
+<meta property="og:locale" content="en_US" />
+
+<!-- Twitter -->
+<meta property="twitter:card" content={twitterCard} />
+<meta property="twitter:url" content={canonical} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={new URL(ogImage, Astro.site)} />
+
+<!-- Additional SEO Meta Tags -->
+<meta name="author" content={siteName} />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#3b82f6" />
+<meta name="color-scheme" content="light dark" />
+
+<!-- Preconnect to important third-party origins -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<!-- DNS Prefetch for external resources -->
+<link rel="dns-prefetch" href="//fonts.googleapis.com" />
+<link rel="dns-prefetch" href="//fonts.gstatic.com" />
+
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

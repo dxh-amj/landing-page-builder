@@ -1,0 +1,51 @@
+---
+import "../styles/global.css";
+import { StandardHeader } from "../components/common/header/index";
+import { CenteredHero } from "../components/common/hero/index";
+
+const educationHeading = "Build skills that move your career forward";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Education Landing Page Demo" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Education Design Demo</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-[#111827] font-inter">
+    <StandardHeader
+      client:load
+      brandName="Education"
+      brandFont='"Outfit", sans-serif'
+      primaryColor="#4F46E5"
+      navItems={["Courses", "Curriculum", "Success Stories", "More"]}
+      textColor="#FFFFFF"
+      bgColor="bg-[#111827]"
+      borderColor="border-gray-800"
+      brandWeight={700}
+      isTransparentInitially={true}
+      ctaText="Enroll Now"
+      showLogin={true}
+      buttonRadius="16px"
+    />
+    <CenteredHero
+      heading={educationHeading}
+      body="Industry-focused training designed to help you succeed in real-world jobs. Learn from experts and join thousands of professionals who transformed their careers."
+      primaryColor="#4F46E5"
+      backgroundImage="/images/education-hero.jpg"
+      headingClassName="text-[42px] md:text-[64px] font-bold leading-[1.1] text-white mb-6"
+      bodyClassName="text-[18px] md:text-[20px] font-normal leading-[1.6] text-gray-200 mb-10 max-w-2xl mx-auto"
+      primaryCtaText="Enroll Now"
+      secondaryCtaText="View Curriculum"
+      buttonRadius="16px"
+    />
+  </body>
+</html>

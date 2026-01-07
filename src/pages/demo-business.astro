@@ -1,0 +1,41 @@
+---
+import "../styles/global.css";
+import { StandardHeader } from "../components/common/header/index";
+import { CenteredHero } from "../components/common/hero/index";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Business Landing Page Demo" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Business Design Demo</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sedan+SC&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="font-inter">
+    <StandardHeader
+      client:load
+      brandName="Truston"
+      brandFont='"Sedan SC", serif'
+      primaryColor="#2563EB"
+      navItems={["Services", "About", "Work"]}
+      showLogin={true}
+      buttonRadius="8px"
+    />
+    <CenteredHero
+      heading="Powering Businesses With Intelligent Digital Solutions"
+      body="From strategy to execution, we design and build technology that drives growth, efficiency, and long-term success."
+      primaryColor="#2563EB"
+      backgroundImage="/images/business-hero-image.png"
+      primaryCtaText="Get Started"
+      secondaryCtaText="Learn more"
+      buttonRadius="8px"
+    />
+  </body>
+</html>

@@ -1,0 +1,49 @@
+---
+import "../styles/global.css";
+import { loadSelectedDesign } from "@/utils/design-loader";
+
+// Load selected design components
+const { Header, Footer } = await loadSelectedDesign();
+import SEO from "../components/SEO.astro";
+
+const { title, description, hideHeader = false, hideFooter = false } = Astro.props;
+
+const seoData = {
+  title: title || "My Website",
+  description: description || "This is my awesome website",
+  ogImage: "/custom-image.png",
+  noindex: false,
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <SEO
+      title={seoData.title}
+      description={seoData.description}
+      ogImage={seoData.ogImage}
+      noindex={seoData.noindex}
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="generator" content={Astro.generator} />
+  </head>
+  <body>
+    {!hideHeader && <Header />}
+    <slot />
+    {!hideFooter && Footer && <Footer />}
+
+    <script>
+      // Service Worker registration
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("/sw.js");
+      }
+    </script>
+  </body>
+</html>

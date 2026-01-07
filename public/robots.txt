@@ -1,0 +1,24 @@
+# Allow all search engines
+User-agent: *
+Allow: /
+
+# Sitemaps (update with your domain)
+Sitemap: https://yourdomain.com/sitemap.xml // change domain name where you wanna deploy
+
+# Crawl delay (optional, can help reduce server load)
+Crawl-delay: 1
+
+# Disallow sensitive or non-public areas
+Disallow: /admin/
+Disallow: /api/
+Disallow: /server/
+Disallow: /_astro/
+Disallow: /assets/
+
+# Allow essential assets (so Google can render pages correctly)
+Allow: /assets/*.css
+Allow: /assets/*.js
+Allow: /assets/*.png
+Allow: /assets/*.jpg
+Allow: /assets/*.svg
+Allow: /assets/*.webp

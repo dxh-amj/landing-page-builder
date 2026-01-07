@@ -1,0 +1,65 @@
+---
+import "../styles/global.css";
+import { StandardHeader } from "../components/common/header/index";
+import { SplitHero } from "../components/common/hero/index";
+
+const navItems = ["Features", "Reviews", "FAQ"];
+
+const headingStyle = {
+  fontSize: "48px",
+  fontWeight: 600,
+  lineHeight: "120%",
+  letterSpacing: "-0.48px",
+  color: "#0A0A0A",
+};
+
+const bodyStyle = {
+  fontSize: "18px",
+  fontWeight: 400,
+  lineHeight: "150%",
+  color: "#6B7280",
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Ecommerce Landing Page Demo" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Ecommerce Design Demo - Eyezen</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sansita+Swashed:wght@700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-white font-inter">
+    <StandardHeader
+      client:load
+      brandName="Eyezen"
+      brandFont='"Sansita Swashed", cursive'
+      primaryColor="#7C3AED"
+      navItems={navItems}
+      brandSize="32px"
+      brandWeight={700}
+      ctaText="Shop Now"
+      showLogin={false}
+      buttonRadius="8px"
+    />
+    <SplitHero
+      heading="Upgrade your daily routine today with Eyezen"
+      body="Designed to deliver comfort, performance, and style every single day. Built for those who refuse to compromise."
+      primaryColor="#7C3AED"
+      headingStyle={headingStyle}
+      bodyStyle={bodyStyle}
+      bgClassName="bg-white"
+      sideImage="/images/ecommerce-hero.png"
+      imageAlt="Eyezen Glasses"
+      primaryCtaText="Shop Now"
+      secondaryCtaText="Learn More"
+      buttonRadius="8px"
+    />
+  </body>
+</html>

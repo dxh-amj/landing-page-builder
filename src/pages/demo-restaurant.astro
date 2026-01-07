@@ -1,0 +1,40 @@
+---
+import "../styles/global.css";
+import { CenteredNavHeader } from "../components/common/header/index";
+import RestaurantHero from "../components/designs/restaurant/RestaurantHero";
+
+const brandFont = "cursive"; // Placeholder, will set styling in component prop if needed or load font
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Restaurant Landing Page Demo" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Deshi Delights - Restaurant Demo</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playwrite+US+Trad:wght@100..400&family=Poppins:wght@400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-white font-poppins">
+    <CenteredNavHeader
+      client:load
+      brandName="Deshi Delights"
+      brandFont='"Playwrite US Trad", cursive'
+      primaryColor="#EA580C"
+      navItems={[
+        { label: "Menu", href: "#" },
+        { label: "About", href: "#" },
+        { label: "Reviews", href: "#" },
+        { label: "Reservations", href: "#" },
+      ]}
+      navFont='"Poppins", sans-serif'
+      buttonRadius="100px"
+    />
+    <RestaurantHero client:load buttonRadius="100px" />
+  </body>
+</html>

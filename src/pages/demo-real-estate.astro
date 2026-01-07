@@ -1,0 +1,69 @@
+---
+import "../styles/global.css";
+import { CenteredNavHeader } from "../components/common/header/index";
+import { SplitHero } from "../components/common/hero/index";
+
+const headingStyle = {
+  fontSize: "var(--Text-Sizes-Heading-3, 48px)",
+  fontWeight: 600,
+  lineHeight: "120%",
+  letterSpacing: "-0.48px",
+  color: "var(--Background-background-500, #FFF)",
+};
+
+const bodyStyle = {
+  fontSize: "18px",
+  fontWeight: 400,
+  lineHeight: "150%",
+  color: "var(--Background-background-500, #FFF)",
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Real Estate Landing Page Demo" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Real Estate Design Demo</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display+SC:wght@700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-[#0A0A0A] font-inter">
+    <CenteredNavHeader
+      client:load
+      brandName="BUILDERS"
+      brandFont='"Playfair Display SC", serif'
+      primaryColor="#059669"
+      navItems={[
+        { label: "Properties", href: "#" },
+        { label: "About Us", href: "#" },
+        { label: "Testimonials", href: "#" },
+        { label: "Contact", href: "#" }
+      ]}
+      textColor="#FFFFFF"
+      bgColor="bg-[#0A0A0A]/90"
+      borderColor="border-white/10"
+      brandWeight={700}
+      buttonRadius="12px"
+    />
+    <SplitHero
+      heading="Find the perfect property with confidence"
+      body="We help buyers and investors find the best properties with expert guidance. Our transparent process makes every step simple and secure."
+      primaryColor="#059669"
+      headingStyle={headingStyle}
+      bodyStyle={bodyStyle}
+      bgClassName="bg-[#0A0A0A]"
+      sideImage="/images/real_estate_hero.png"
+      imageAlt="Luxury Estate"
+      primaryCtaText="Schedule a Viewing"
+      secondaryCtaText="Learn More"
+      showDecorativeElements={true}
+      buttonRadius="12px"
+    />
+  </body>
+</html>
