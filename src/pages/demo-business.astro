@@ -6,6 +6,42 @@ import { SplitCta } from "../components/common/cta/index";
 import FeatureGrid from "../components/designs/business/FeatureGrid";
 import ProvenResults from "../components/designs/business/ProvenResults";
 import StatsSection from "../components/designs/business/StatsSection";
+import {StandardTestimonial} from "../components/common/testimonial/index";
+
+const testimonialData = [
+  {
+    id: 1,
+    name: "Abdur Rahim",
+    role: "Founder, TechStart Bangladesh",
+    content: "They understood our business from day one and delivered exactly what we needed, on time and on budget.",
+    rating: 5,
+    image: "https://i.pravatar.cc/150?u=abdur",
+  },
+  {
+    id: 2,
+    name: "Mahdi Hassan",
+    role: "CEO, Digital Solutions Ltd",
+    content: "The team brought fresh thinking to problems we'd been wrestling with for months. Real partners, not just vendors.",
+    rating: 5,
+    image: "https://i.pravatar.cc/150?u=mahdi",
+  },
+  {
+    id: 3,
+    name: "Amina Hossain",
+    role: "Operations Director, Growth Ventures",
+    content: "Professional, responsive, and genuinely invested in our success. They made the whole process feel effortless.",
+    rating: 5,
+    image: "https://i.pravatar.cc/150?u=amina",
+  },
+  {
+    id: 4,
+    name: "Sarah Jenkins",
+    role: "CTO, FinFlow",
+    content: "Their technical expertise is unmatched. We scaled our user base by 200% without a single hiccup.",
+    rating: 5,
+    image: "https://i.pravatar.cc/150?u=sarah",
+  }
+];
 ---
 
 <!doctype html>
@@ -54,6 +90,15 @@ import StatsSection from "../components/designs/business/StatsSection";
       primaryColor="#1E4ED8"
       backgroundColor="#E9EDFB"
     />
+    <StandardTestimonial 
+      client:visible
+      heading="What clients say"
+      subheading="Hear from the teams we've worked with"
+      testimonials={testimonialData}
+      primaryColor="#1E4ED8"
+      backgroundColor="#FFFFFF"
+    />
+
     <SplitCta
       title="Let's Turn Your Ideas Into Results"
       description="Talk to our experts and discover how we can support your goals with proven strategies and modern solutions."

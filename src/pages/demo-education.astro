@@ -5,6 +5,58 @@ import { CenteredHero } from "../components/common/hero/index";
 import StandardContact, { type ContactInfoItem } from "../components/common/contact/StandardContact";
 import { EmailIcon, PhoneIcon, OfficeIcon, DirectionIcon } from "../components/common/icons";
 import { SplitCta } from "../components/common/cta/index";
+import {StandardTestimonial} from "../components/common/testimonial/index";
+
+const testimonialData = [
+  {
+    id: 1,
+    name: "Abdur Rahim",
+    role: "Founder, TechStart Bangladesh",
+    content: "They understood our business from day one and delivered exactly what we needed, on time and on budget.",
+    rating: 5,
+    image: "https://i.pravatar.cc/150?u=abdur", // Placeholder image based on name context
+  },
+  {
+    id: 2,
+    name: "Mahdi Hassan",
+    role: "CEO, Digital Solutions Ltd",
+    content: "The team brought fresh thinking to problems we'd been wrestling with for months. Real partners, not just vendors.",
+    rating: 5,
+    image: "https://i.pravatar.cc/150?u=mahdi", // Placeholder image based on name context
+  },
+  {
+    id: 3,
+    name: "Amina Hossain",
+    role: "Operations Director, Growth Ventures",
+    content: "Professional, responsive, and genuinely invested in our success. They made the whole process feel effortless.",
+    rating: 5,
+    image: "https://i.pravatar.cc/150?u=amina", // Placeholder image based on name context
+  },
+  {
+    id: 4,
+    name: "Rahim Ahmed",
+    role: "Regular customer",
+    content: "“Best food in town! Fresh, tasty, and fast service.”",
+    rating: 5,
+    image: "https://i.pravatar.cc/150?u=rahim", // Placeholder based on name context
+  },
+  {
+    id: 5,
+    name: "Fatima Khan",
+    role: "Food enthusiast",
+    content: "“The flavors are authentic and the portions are generous. Highly recommended.”",
+    rating: 5,
+    image: "https://i.pravatar.cc/150?u=fatima", // Placeholder based on name context
+  },
+  {
+    id: 6,
+    name: "Karim Hassan",
+    role: "Loyal customer",
+    content: "“Excellent service and delicious meals. This is my favorite place to eat.”",
+    rating: 5,
+    image: "https://i.pravatar.cc/150?u=karim", // Placeholder based on name context
+  },
+];
 
 const contactItems: ContactInfoItem[] = [
   {
@@ -84,17 +136,13 @@ const educationHeading = "Build skills that move your career forward";
       secondaryCtaText="View Curriculum"
       buttonRadius="16px"
     />
-    <StandardContact
-      tagline="Connect"
-      heading="Get in touch"
-      description="Have questions about our properties or services? We're here to help."
-      imageSrc="https://api.builder.io/api/v1/image/assets/TEMP/b4d9047ef5262741e8adacfeb08d35c5a677520b?width=1600"
-      primaryColor="#0A0A0A"
-      taglineBackgroundColor="#8B5CF6"
-      taglineTextColor="#FFFFFF"
-      sectionClassName="bg-[#EEF2FF]"
-      buttonRadius="16px"
-      contactInfo={contactItems}
+    <StandardTestimonial 
+      client:visible
+      heading="Student stories"
+      subheading="Hear from those who made the leap."
+      testimonials={testimonialData}
+      primaryColor="#1E4ED8"
+      backgroundColor="#EDEDFC"
     />
     <SplitCta
       title="Ready to transform your career"
@@ -106,6 +154,18 @@ const educationHeading = "Build skills that move your career forward";
       primaryColor="#4F46E5"
       backgroundColor="#EEF2FF"
       buttonRadius="16px"
+    />
+    <StandardContact
+      tagline="Connect"
+      heading="Get in touch"
+      description="Have questions about our properties or services? We're here to help."
+      imageSrc="https://api.builder.io/api/v1/image/assets/TEMP/b4d9047ef5262741e8adacfeb08d35c5a677520b?width=1600"
+      primaryColor="#0A0A0A"
+      taglineBackgroundColor="#8B5CF6"
+      taglineTextColor="#FFFFFF"
+      sectionClassName="bg-[#EEF2FF]"
+      buttonRadius="16px"
+      contactInfo={contactItems}
     />
   </body>
 </html>
