@@ -1,5 +1,5 @@
 import React from "react";
-import { ChevronRightIcon } from "../icons";
+import { ChevronRightIcon } from "../../common/icons";
 
 interface StatsSectionProps {
   primaryColor?: string;

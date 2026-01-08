@@ -1,5 +1,9 @@
 import React from "react";
-import { BusinessChipIcon, FoundationIcon, ChevronRightIcon } from "../icons";
+import {
+  BusinessChipIcon,
+  FoundationIcon,
+  ChevronRightIcon,
+} from "../../common/icons";
 
 interface ProvenResultsProps {
   primaryColor?: string;

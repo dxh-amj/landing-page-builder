@@ -1,6 +1,6 @@
 import React from "react";
 import Badge from "../../ui/Badge";
-import { ChevronRightIcon } from "../icons";
+import { ChevronRightIcon } from "../../common/icons";
 
 // Types
 interface FeatureCardData {
