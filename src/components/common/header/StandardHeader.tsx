@@ -137,12 +137,18 @@ export default function StandardHeader({
                 <Button
                   variant="outline"
                   size="md"
-                  style={{ ...navStyle, borderRadius: buttonRadius }}
-                  className={
-                    isTransparentInitially && !isScrolled
-                      ? "border-white/30 text-white hover:bg-white/10"
-                      : ""
+                  style={
+                    {
+                      ...navStyle,
+                      "--hover-bg": primaryColor,
+                      borderRadius: buttonRadius,
+                    } as React.CSSProperties
                   }
+                  className={`transition-all duration-300 hover:!text-white hover:!bg-[var(--hover-bg)] hover:!border-[var(--hover-bg)] ${
+                    isTransparentInitially && !isScrolled
+                      ? "border-white/30 text-white"
+                      : "bg-transparent border"
+                  }`}
                 >
                   Log In
                 </Button>
@@ -150,6 +156,7 @@ export default function StandardHeader({
               <Button
                 variant="primary"
                 size="md"
+                className="hover:brightness-110 transition-all duration-300"
                 style={{
                   fontFamily: navFont,
                   backgroundColor: primaryColor,
@@ -220,12 +227,26 @@ export default function StandardHeader({
                 <Button
                   variant="outline"
                   size="md"
-                  style={{
-                    ...navStyle,
-                    color: textColor,
-                    borderRadius: buttonRadius,
-                  }}
-                  className="w-full"
+                  className={`w-full transition-all duration-300 hover:!text-white hover:!bg-[var(--hover-bg)] hover:!border-[var(--hover-bg)] ${
+                    isTransparentInitially && !isScrolled
+                      ? "border-white/30 text-white"
+                      : "bg-transparent border"
+                  }`}
+                  style={
+                    {
+                      ...navStyle,
+                      "--hover-bg": primaryColor,
+                      color:
+                        isTransparentInitially && !isScrolled
+                          ? "#FFFFFF"
+                          : textColor,
+                      borderColor:
+                        isTransparentInitially && !isScrolled
+                          ? "rgba(255,255,255,0.3)"
+                          : borderColor.replace("border-", "var(--color-)"), // simplified logic as borderColor is class string
+                      borderRadius: buttonRadius,
+                    } as React.CSSProperties
+                  }
                 >
                   Log In
                 </Button>
@@ -233,6 +254,7 @@ export default function StandardHeader({
               <Button
                 variant="primary"
                 size="md"
+                className="hover:brightness-110 transition-all duration-300"
                 style={{
                   fontFamily: navFont,
                   backgroundColor: primaryColor,

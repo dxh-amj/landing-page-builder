@@ -3,6 +3,9 @@ import "../styles/global.css";
 import { StandardHeader } from "../components/common/header/index";
 import { CenteredHero } from "../components/common/hero/index";
 import { SplitCta } from "../components/common/cta/index";
+import { FeatureGrid } from "../components/common/features/index";
+import ProvenResults from "../components/common/sections/ProvenResults";
+import StatsSection from "../components/common/sections/StatsSection";
 ---
 
 <!doctype html>
@@ -37,6 +40,19 @@ import { SplitCta } from "../components/common/cta/index";
       primaryCtaText="Get Started"
       secondaryCtaText="Learn more"
       buttonRadius="8px"
+    />
+    <FeatureGrid
+      primaryColor="#1E4ED8"
+      backgroundColor="#E9EDFB"
+      buttonRadius="8px"
+    />
+    <ProvenResults
+      primaryColor="#1E4ED8"
+      backgroundColor="#FFFFFF"
+    />
+    <StatsSection
+      primaryColor="#1E4ED8"
+      backgroundColor="#E9EDFB"
     />
     <SplitCta
       title="Let's Turn Your Ideas Into Results"

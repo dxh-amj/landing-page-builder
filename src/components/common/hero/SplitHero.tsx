@@ -76,7 +76,7 @@ export default function SplitHero({
             <Button
               variant="primary"
               size="md"
-              className="font-medium text-white px-8 h-12"
+              className="font-medium text-white px-8 h-12 hover:brightness-110 transition-all duration-300"
               style={{
                 backgroundColor: primaryColor,
                 borderRadius: buttonRadius,
@@ -87,12 +87,15 @@ export default function SplitHero({
             <Button
               variant="outline"
               size="md"
-              className="font-medium px-8 h-12"
-              style={{
-                borderColor: primaryColor,
-                color: primaryColor,
-                borderRadius: buttonRadius,
-              }}
+              className="font-medium px-8 h-12 bg-transparent border transition-all duration-300 hover:!text-white hover:!bg-[var(--hover-bg)] hover:!border-[var(--hover-bg)]"
+              style={
+                {
+                  "--hover-bg": primaryColor,
+                  borderColor: primaryColor,
+                  color: primaryColor,
+                  borderRadius: buttonRadius,
+                } as React.CSSProperties
+              }
             >
               {secondaryCtaText}
             </Button>

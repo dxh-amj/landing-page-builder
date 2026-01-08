@@ -71,7 +71,7 @@ export default function CenteredHero({
             <Button
               variant="primary"
               size="md"
-              className="font-medium shadow-lg hover:shadow-xl text-white"
+              className="font-medium shadow-lg hover:shadow-xl hover:brightness-110 text-white transition-all duration-300"
               style={{
                 backgroundColor: primaryColor,
                 borderRadius: buttonRadius,
@@ -80,10 +80,15 @@ export default function CenteredHero({
               {primaryCtaText}
             </Button>
             <Button
-              variant="glass"
+              variant="outline"
               size="md"
-              className="font-medium"
-              style={{ borderRadius: buttonRadius }}
+              className="font-medium bg-transparent border text-white border-white hover:!text-white hover:!bg-[var(--hover-bg)] hover:!border-[var(--hover-bg)] transition-all duration-300"
+              style={
+                {
+                  "--hover-bg": primaryColor,
+                  borderRadius: buttonRadius,
+                } as React.CSSProperties
+              }
             >
               {secondaryCtaText}
             </Button>

@@ -96,7 +96,7 @@ export default function CenteredNavHeader({
               <Button
                 variant="primary"
                 size="md"
-                className="border-none text-white px-8"
+                className="border-none text-white px-8 hover:brightness-110 transition-all duration-300"
                 style={{
                   backgroundColor: primaryColor,
                   borderRadius: buttonRadius,
@@ -150,7 +150,7 @@ export default function CenteredNavHeader({
               <Button
                 variant="primary"
                 size="md"
-                className="border-none text-white mt-4 w-full h-12"
+                className="border-none text-white mt-4 w-full h-12 hover:brightness-110 transition-all duration-300"
                 style={{
                   backgroundColor: primaryColor,
                   borderRadius: buttonRadius,
