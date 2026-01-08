@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import { CenteredNavHeader } from "../components/common/header/index";
 import RestaurantHero from "../components/designs/restaurant/RestaurantHero";
+import { CtaRestaurant } from "../components/common/cta";
 
 const brandFont = "cursive"; // Placeholder, will set styling in component prop if needed or load font
 // This is a refined demo page for the restaurant template.
@@ -37,5 +38,13 @@ const brandFont = "cursive"; // Placeholder, will set styling in component prop 
       buttonRadius="100px"
     />
     <RestaurantHero client:load buttonRadius="100px" />
+    <CtaRestaurant
+      title="Ready to taste something real?"
+      description="Join us for a meal that matters, made the way it should be."
+      primaryActionText="Order Now"
+      secondaryActionText="Reserve Seat"
+      primaryColor="#EA580C"
+      imageUrl="/images/cta/restaurant_bg.jpg"
+    />
   </body>
 </html>
