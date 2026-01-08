@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import { CenteredNavHeader } from "../components/common/header/index";
 import RestaurantHero from "../components/designs/restaurant/RestaurantHero";
+import WhyChooseUs from "../components/designs/restaurant/WhyChooseUs";
 import StandardContact, { type ContactInfoItem } from "../components/common/contact/StandardContact";
 import { EmailIcon, PhoneIcon, OfficeIcon, DirectionIcon } from "../components/common/icons";
 import { ImageCta } from "../components/common/cta/index";
@@ -74,6 +75,12 @@ const brandFont = "cursive"; // Placeholder, will set styling in component prop 
       buttonRadius="100px"
     />
     <RestaurantHero client:load buttonRadius="100px" />
+    <WhyChooseUs
+      client:load
+      primaryColor="#EA580C"
+      badgeBackground="linear-gradient(95deg, rgba(255, 207, 182, 0.30) -26.16%, rgba(255, 169, 125, 0.70) 142.98%)"
+      buttonRadius="100px"
+    />
       <ImageCta
       title="Ready to taste something real?"
       description="Join us for a meal that matters, made the way it should be."

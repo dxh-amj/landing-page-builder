@@ -42,7 +42,7 @@ export default function RestaurantHero({
               {/* Buttons */}
               <div className="flex flex-wrap items-center gap-4">
                 <Button
-                  className="px-5 py-2.5 text-white font-semibold text-base transition-colors"
+                  className="px-5 py-2.5 text-white font-semibold text-base transition-all hover:brightness-110"
                   style={{
                     backgroundColor: primaryColor,
                     borderRadius: buttonRadius,
@@ -51,20 +51,15 @@ export default function RestaurantHero({
                   {reserveBtnText}
                 </Button>
                 <Button
-                  className="px-5 py-2.5 bg-transparent border font-semibold text-base transition-colors hover:text-white"
-                  style={{
-                    borderColor: primaryColor,
-                    color: primaryColor,
-                    borderRadius: buttonRadius,
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = primaryColor;
-                    e.currentTarget.style.color = "white";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = "transparent";
-                    e.currentTarget.style.color = primaryColor;
-                  }}
+                  className="px-5 py-2.5 bg-transparent border font-semibold text-base transition-all hover:!text-white hover:!bg-[var(--hover-bg)] hover:!border-[var(--hover-bg)]"
+                  style={
+                    {
+                      "--hover-bg": primaryColor,
+                      borderColor: primaryColor,
+                      color: primaryColor,
+                      borderRadius: buttonRadius,
+                    } as React.CSSProperties
+                  }
                 >
                   {menuBtnText}
                 </Button>

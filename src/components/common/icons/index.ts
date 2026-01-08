@@ -8,3 +8,4 @@ export * from "./CloseIcon";
 export * from "./MenuIcon";
 export * from "./BusinessChipIcon";
 export * from "./FoundationIcon";
+export { default as RestaurantFeatureIcon } from './RestaurantFeatureIcon';
