@@ -28,10 +28,10 @@ export default function ImageCta({
     >
       <div className="absolute inset-0 bg-black/60" />
       <div className="relative z-10">
-        <h1 className="text-4xl lg:text-5xl xl:text-6xl leading-tight max-w-[600px] font-semibold text-white">
+        <h1 className="text-4xl lg:text-5xl xl:text-6xl leading-tight max-w-[768px] font-semibold text-white">
           {title}
         </h1>
-        <p className="text-base lg:text-lg max-w-[500px] text-white/90 mt-5 mb-8">
+        <p className="text-base lg:text-lg max-w-[768px] mx-auto text-white/90 mt-5 mb-8">
           {description}
         </p>
         <div className="flex items-center justify-center gap-4">

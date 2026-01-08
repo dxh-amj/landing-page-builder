@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import { StandardHeader } from "../components/common/header/index";
 import { SplitHero } from "../components/common/hero/index";
+import CtaCenteredImage from "@/components/common/cta/CtaCenteredImage";
 
 const navItems = ["Features", "Reviews", "FAQ"];
 
@@ -59,6 +60,16 @@ const bodyStyle = {
       imageAlt="Eyezen Glasses"
       primaryCtaText="Shop Now"
       secondaryCtaText="Learn More"
+      buttonRadius="8px"
+    />
+    <CtaCenteredImage
+      title="Limited time offer ends soon"
+      description="Join thousands of satisfied customers. Free delivery across Bangladesh on all orders today."
+      primaryActionText="Shop Now"
+      secondaryActionText="Learn More"
+      imageUrl="/images/cta/product_bg.png"
+      primaryColor="#7C3AED"
+      secondaryColor="#FFFFFF"
       buttonRadius="8px"
     />
   </body>
