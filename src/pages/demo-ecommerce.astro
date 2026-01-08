@@ -3,6 +3,58 @@ import "../styles/global.css";
 import { StandardHeader } from "../components/common/header/index";
 import { SplitHero } from "../components/common/hero/index";
 import CtaCenteredImage from "@/components/common/cta/CtaCenteredImage";
+import {StandardTestimonial} from "../components/common/testimonial/index";
+
+const testimonialData = [
+  {
+    id: 1,
+    name: "Abdur Rahim",
+    role: "Founder, TechStart Bangladesh",
+    content: "They understood our business from day one and delivered exactly what we needed, on time and on budget.",
+    rating: 5,
+    image: "https://i.pravatar.cc/150?u=abdur", // Placeholder image based on name context
+  },
+  {
+    id: 2,
+    name: "Mahdi Hassan",
+    role: "CEO, Digital Solutions Ltd",
+    content: "The team brought fresh thinking to problems we'd been wrestling with for months. Real partners, not just vendors.",
+    rating: 5,
+    image: "https://i.pravatar.cc/150?u=mahdi", // Placeholder image based on name context
+  },
+  {
+    id: 3,
+    name: "Amina Hossain",
+    role: "Operations Director, Growth Ventures",
+    content: "Professional, responsive, and genuinely invested in our success. They made the whole process feel effortless.",
+    rating: 5,
+    image: "https://i.pravatar.cc/150?u=amina", // Placeholder image based on name context
+  },
+  {
+    id: 4,
+    name: "Rahim Ahmed",
+    role: "Regular customer",
+    content: "“Best food in town! Fresh, tasty, and fast service.”",
+    rating: 5,
+    image: "https://i.pravatar.cc/150?u=rahim", // Placeholder based on name context
+  },
+  {
+    id: 5,
+    name: "Fatima Khan",
+    role: "Food enthusiast",
+    content: "“The flavors are authentic and the portions are generous. Highly recommended.”",
+    rating: 5,
+    image: "https://i.pravatar.cc/150?u=fatima", // Placeholder based on name context
+  },
+  {
+    id: 6,
+    name: "Karim Hassan",
+    role: "Loyal customer",
+    content: "“Excellent service and delicious meals. This is my favorite place to eat.”",
+    rating: 5,
+    image: "https://i.pravatar.cc/150?u=karim", // Placeholder based on name context
+  }
+];
 
 const navItems = ["Features", "Reviews", "FAQ"];
 
@@ -61,6 +113,14 @@ const bodyStyle = {
       primaryCtaText="Shop Now"
       secondaryCtaText="Learn More"
       buttonRadius="8px"
+    />
+    <StandardTestimonial 
+      client:visible
+      heading="Real reviews"
+      subheading="Hear from customers who made the switch"
+      testimonials={testimonialData}
+      primaryColor="#1E4ED8"
+      backgroundColor="#FFFFFF"
     />
     <CtaCenteredImage
       title="Limited time offer ends soon"

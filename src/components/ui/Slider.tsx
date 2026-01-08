@@ -1,6 +1,9 @@
 // components/ui/Slider.tsx
-import React, { useEffect, useRef, useState } from "react";
+"use client";
+
+import React, { useEffect, useRef, useState, useMemo, useCallback } from "react";
 import clsx from "clsx";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export interface SliderProps<T> {
   data: T[];
@@ -19,7 +22,7 @@ export function Slider<T>({
   data,
   renderSlide,
   slidesPerView = 1,
-  spaceBetween = 10,
+  spaceBetween = 20,
   loop = false,
   autoplay = false,
   autoplayDelay = 3000,
@@ -29,178 +32,194 @@ export function Slider<T>({
 }: SliderProps<T>) {
   const sliderRef = useRef<HTMLDivElement>(null);
   const autoplayRef = useRef<number | null>(null);
+  
+  // Initialize with the correct start index
   const [currentIndex, setCurrentIndex] = useState(loop ? slidesPerView : 0);
-  const [currentSlidesPerView, setCurrentSlidesPerView] =
-    useState(slidesPerView);
+  const [currentSlidesPerView, setCurrentSlidesPerView] = useState(slidesPerView);
+  const [isTransitioning, setIsTransitioning] = useState(true);
 
   const totalSlides = data.length;
-  const trackSlides = loop
-    ? [
-        ...data.slice(-currentSlidesPerView),
-        ...data,
-        ...data.slice(0, currentSlidesPerView),
-      ]
-    : data;
+
+  // Memoize the slides to prevent hydration mismatches and unnecessary recalculations
+  const trackSlides = useMemo(() => {
+    if (!loop) return data;
+    // Pad the start and end for infinite looping
+    return [
+      ...data.slice(-currentSlidesPerView),
+      ...data,
+      ...data.slice(0, currentSlidesPerView),
+    ];
+  }, [data, loop, currentSlidesPerView]);
 
   const slideWidth = 100 / currentSlidesPerView;
 
-  // Responsive slidesPerView
+  // Responsive slidesPerView Logic
   useEffect(() => {
     const updateSlidesPerView = () => {
       if (!breakpoints) return setCurrentSlidesPerView(slidesPerView);
       const width = window.innerWidth;
+      const sortedPoints = Object.keys(breakpoints)
+        .map(Number)
+        .sort((a, b) => a - b);
+      
       let matched = slidesPerView;
-      Object.keys(breakpoints).forEach((w) => {
-        if (width >= Number(w)) matched = breakpoints[Number(w)];
-      });
+      for (const point of sortedPoints) {
+        if (width >= point) matched = breakpoints[point];
+      }
+      
+      // Update state and adjust index if strictly necessary to prevent layout jumps
       setCurrentSlidesPerView(matched);
     };
+    
     updateSlidesPerView();
     window.addEventListener("resize", updateSlidesPerView);
     return () => window.removeEventListener("resize", updateSlidesPerView);
   }, [breakpoints, slidesPerView]);
 
-  const goToSlide = (index: number) => {
+  const goToSlide = useCallback((index: number) => {
+    setIsTransitioning(true);
     setCurrentIndex(index);
-  };
+  }, []);
 
-  const nextSlide = () => goToSlide(currentIndex + 1);
-  const prevSlide = () => goToSlide(currentIndex - 1);
+  const nextSlide = useCallback(() => goToSlide(currentIndex + 1), [currentIndex, goToSlide]);
+  const prevSlide = useCallback(() => goToSlide(currentIndex - 1), [currentIndex, goToSlide]);
 
-  // Autoplay
+  // Autoplay Logic
   useEffect(() => {
     if (!autoplay) return;
-    autoplayRef.current = window.setInterval(nextSlide, autoplayDelay);
+    // Clear existing interval to prevent overlapping timers
+    if (autoplayRef.current) clearInterval(autoplayRef.current);
+    
+    // Explicitly cast setInterval to number to resolve the type mismatch
+    autoplayRef.current = setInterval(nextSlide, autoplayDelay) as unknown as number;
+    
     return () => {
       if (autoplayRef.current) clearInterval(autoplayRef.current);
     };
-  }, [currentIndex, autoplay, autoplayDelay]);
+  }, [currentIndex, autoplay, autoplayDelay, nextSlide]);
 
-  // Loop reset
+  // Infinite Loop Reset Logic (The "Snap Back")
   useEffect(() => {
     if (!loop) return;
 
     const handleTransitionEnd = () => {
+      const sliderEl = sliderRef.current;
+      if (!sliderEl) return;
+
       if (currentIndex >= totalSlides + currentSlidesPerView) {
-        setCurrentIndex(currentSlidesPerView);
+        // We are at the cloned end, jump to the real start
+        setIsTransitioning(false);
+        setCurrentIndex(currentSlidesPerView); 
       } else if (currentIndex < currentSlidesPerView) {
+        // We are at the cloned start, jump to the real end
+        setIsTransitioning(false);
         setCurrentIndex(totalSlides + currentSlidesPerView - 1);
       }
     };
 
     const sliderEl = sliderRef.current;
     sliderEl?.addEventListener("transitionend", handleTransitionEnd);
-    return () =>
-      sliderEl?.removeEventListener("transitionend", handleTransitionEnd);
+    return () => sliderEl?.removeEventListener("transitionend", handleTransitionEnd);
   }, [currentIndex, loop, totalSlides, currentSlidesPerView]);
 
-  // Swipe / Drag support
-  const dragStartX = useRef<number | null>(null);
-  const dragDelta = useRef<number>(0);
-
-  const handleMouseDown = (e: React.MouseEvent) =>
-    (dragStartX.current = e.clientX);
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (dragStartX.current === null) return;
-    dragDelta.current = e.clientX - dragStartX.current;
-  };
-  const handleMouseUp = () => {
-    if (dragDelta.current > 50) prevSlide();
-    else if (dragDelta.current < -50) nextSlide();
-    dragStartX.current = null;
-    dragDelta.current = 0;
-  };
-
-  const handleTouchStart = (e: React.TouchEvent) =>
-    (dragStartX.current = e.touches[0].clientX);
-  const handleTouchMove = (e: React.TouchEvent) => {
-    if (dragStartX.current === null) return;
-    dragDelta.current = e.touches[0].clientX - dragStartX.current;
-  };
-  const handleTouchEnd = () => {
-    if (dragDelta.current > 50) prevSlide();
-    else if (dragDelta.current < -50) nextSlide();
-    dragStartX.current = null;
-    dragDelta.current = 0;
-  };
-
-  // Keyboard navigation
+  // Re-enable transition after a snap-back
   useEffect(() => {
-    const handleKey = (e: KeyboardEvent) => {
-      if (e.key === "ArrowLeft") prevSlide();
-      else if (e.key === "ArrowRight") nextSlide();
-    };
-    window.addEventListener("keydown", handleKey);
-    return () => window.removeEventListener("keydown", handleKey);
-  }, [currentIndex]);
+    if (!isTransitioning) {
+        // Force a reflow to ensure the browser processes the "no-transition" state
+        // before re-enabling it for the next user interaction
+        const sliderEl = sliderRef.current;
+        if(sliderEl) void sliderEl.offsetWidth; 
+        
+        // Use a micro-timeout to re-enable transitions
+        requestAnimationFrame(() => setIsTransitioning(true));
+    }
+  }, [isTransitioning]);
 
   return (
-    <div className="relative w-full overflow-hidden">
-      <div
-        ref={sliderRef}
-        className={clsx("flex transition-transform duration-500 ease-in-out")}
-        style={{
-          transform: `translateX(-${
-            currentIndex * (slideWidth + spaceBetween / currentSlidesPerView)
-          }%)`,
-        }}
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
-        onMouseLeave={handleMouseUp}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
-      >
-        {trackSlides.map((item, i) => (
-          <div
-            key={i}
-            style={{
-              flex: `0 0 ${slideWidth}%`,
-              marginRight: i !== trackSlides.length - 1 ? spaceBetween : 0,
-            }}
-          >
-            {renderSlide(item, i)}
-          </div>
-        ))}
+    <div className="w-full relative group">
+      {/* Slider Window (Overflow Hidden) */}
+      <div className="overflow-hidden w-full">
+        {/* Slider Track */}
+        <div
+          ref={sliderRef}
+          className={clsx(
+            "flex w-full", // w-full is CRITICAL here for percentages to work relative to viewport
+            isTransitioning ? "transition-transform duration-500 ease-in-out" : "transition-none"
+          )}
+          style={{
+            transform: `translateX(-${currentIndex * slideWidth}%)`,
+          }}
+        >
+          {trackSlides.map((item, i) => (
+            <div
+              key={i}
+              className="flex-shrink-0" // Prevent slides from squashing
+              style={{
+                width: `${slideWidth}%`,
+                paddingRight: `${spaceBetween}px`,
+                boxSizing: "border-box",
+              }}
+            >
+              {renderSlide(item, i)}
+            </div>
+          ))}
+        </div>
       </div>
 
-      {showButtons && (
-        <>
-          <button
-            className="absolute top-1/2 left-2 -translate-y-1/2 bg-black text-white px-3 py-1 rounded"
-            onClick={prevSlide}
-          >
-            Prev
-          </button>
-          <button
-            className="absolute top-1/2 right-2 -translate-y-1/2 bg-black text-white px-3 py-1 rounded"
-            onClick={nextSlide}
-          >
-            Next
-          </button>
-        </>
-      )}
+      {/* Controls */}
+      <div className="flex items-center justify-between mt-8 px-2">
+        {/* Bullets */}
+        {showBullets && (
+          <div className="flex gap-2">
+            {data.map((_, i) => {
+              // Calculate visual active index for the loop
+              let activeState = false;
+              if (loop) {
+                 const realIndex = currentIndex - currentSlidesPerView;
+                 // Handle bounds for active state visualization
+                 if (realIndex === i) activeState = true;
+                 if (realIndex < 0 && i === totalSlides - 1) activeState = true; // Transitioning from 0 to end
+                 if (realIndex >= totalSlides && i === 0) activeState = true; // Transitioning from end to 0
+              } else {
+                 activeState = currentIndex === i;
+              }
 
-      {showBullets && (
-        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-2">
-          {data.map((_, i) => {
-            const activeIndex = loop
-              ? currentIndex - currentSlidesPerView
-              : currentIndex;
-            return (
-              <button
-                key={i}
-                onClick={() => goToSlide(loop ? i + currentSlidesPerView : i)}
-                className={clsx(
-                  "w-3 h-3 rounded-full",
-                  activeIndex === i ? "bg-blue-500" : "bg-gray-300"
-                )}
-              />
-            );
-          })}
-        </div>
-      )}
+              return (
+                <button
+                  key={i}
+                  onClick={() => {
+                    setIsTransitioning(true);
+                    goToSlide(loop ? i + currentSlidesPerView : i);
+                  }}
+                  className={clsx(
+                    "w-2.5 h-2.5 rounded-full transition-colors duration-300",
+                    activeState ? "bg-blue-600" : "bg-gray-300 hover:bg-gray-400"
+                  )}
+                  aria-label={`Go to slide ${i + 1}`}
+                />
+              );
+            })}
+          </div>
+        )}
+
+        {/* Arrows */}
+        {showButtons && (
+          <div className="flex gap-4">
+            <button
+              onClick={prevSlide}
+              className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 hover:border-gray-400 hover:text-gray-900 transition-colors bg-white"
+            >
+              <ChevronLeft size={20} />
+            </button>
+            <button
+              onClick={nextSlide}
+              className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 hover:border-gray-400 hover:text-gray-900 transition-colors bg-white"
+            >
+              <ChevronRight size={20} />
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
