@@ -3,9 +3,36 @@ import "../styles/global.css";
 import { StandardHeader } from "../components/common/header/index";
 import { CenteredHero } from "../components/common/hero/index";
 import { SplitCta } from "../components/common/cta/index";
-import FeatureGrid from "../components/designs/business/FeatureGrid";
+import FeatureShowcase from "../components/common/features/FeatureShowcase";
 import ProvenResults from "../components/designs/business/ProvenResults";
 import StatsSection from "../components/designs/business/StatsSection";
+
+const businessFeatures = [
+  {
+    title: "Strategy consulting",
+    description: "We map your market, define your positioning, and chart the path forward.",
+    imageSrc: "/images/features/strategy.jpg",
+    badgeText: "Strategy",
+    buttonText: "Learn more",
+    layout: "vertical" as const,
+  },
+  {
+    title: "Product design",
+    description: "Beautiful interfaces that work hard and feel right for your users.",
+    imageSrc: "/images/features/design.jpg",
+    badgeText: "Design",
+    buttonText: "Explore",
+    layout: "horizontal" as const,
+  },
+  {
+    title: "Team augmentation",
+    description: "Skilled engineers who integrate seamlessly into your existing teams.",
+    imageSrc: "/images/features/engineering.jpg",
+    badgeText: "Engineering",
+    buttonText: "Explore",
+    layout: "horizontal" as const,
+  },
+];
 ---
 
 <!doctype html>
@@ -41,10 +68,16 @@ import StatsSection from "../components/designs/business/StatsSection";
       secondaryCtaText="Learn more"
       buttonRadius="8px"
     />
-    <FeatureGrid
+    <FeatureShowcase
+      tagline="Capabilities"
+      heading="What we do best"
+      description="We combine strategic thinking with hands-on execution to deliver results."
       primaryColor="#1E4ED8"
       backgroundColor="#E9EDFB"
       buttonRadius="8px"
+      badgeBackground="#1E4ED8"
+      badgeTextColor="#FFFFFF"
+      features={businessFeatures}
     />
     <ProvenResults
       primaryColor="#1E4ED8"

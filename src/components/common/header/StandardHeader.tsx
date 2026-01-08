@@ -117,15 +117,25 @@ export default function StandardHeader({
                 <a
                   key={item}
                   href="#"
-                  style={navStyle}
-                  className="hover:opacity-70 transition-opacity"
+                  style={
+                    {
+                      ...navStyle,
+                      "--hover-color": primaryColor,
+                    } as React.CSSProperties
+                  }
+                  className="transition-colors hover:!text-[var(--hover-color)]"
                 >
                   {item}
                 </a>
               ))}
               <button
-                style={navStyle}
-                className="flex items-center gap-1 hover:opacity-70 transition-opacity"
+                style={
+                  {
+                    ...navStyle,
+                    "--hover-color": primaryColor,
+                  } as React.CSSProperties
+                }
+                className="flex items-center gap-1 transition-colors hover:!text-[var(--hover-color)]"
               >
                 More
                 <ChevronDownIcon className="w-4 h-4" />
@@ -210,8 +220,14 @@ export default function StandardHeader({
                   <a
                     key={item}
                     href="#"
-                    style={{ ...navStyle, color: textColor }}
-                    className="hover:opacity-70 transition-opacity"
+                    style={
+                      {
+                        ...navStyle,
+                        color: textColor,
+                        "--hover-color": primaryColor,
+                      } as React.CSSProperties
+                    }
+                    className="transition-colors hover:!text-[var(--hover-color)]"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {item}
