@@ -1,6 +1,5 @@
 import { useState } from "react";
-import MenuIcon from "@/components/icons/MenuIcon";
-import CloseIcon from "@/components/icons/CloseIcon";
+import { MenuIcon, CloseIcon } from "@/components/common/icons";
 import Button from "@/components/ui/Button";
 
 export interface CenteredNavHeaderProps {

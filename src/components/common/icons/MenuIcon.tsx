@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function MenuIcon({
+export function MenuIcon({
   className,
   ...props
 }: React.SVGProps<SVGSVGElement>) {

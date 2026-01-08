@@ -2,6 +2,42 @@
 import "../styles/global.css";
 import { StandardHeader } from "../components/common/header/index";
 import { CenteredHero } from "../components/common/hero/index";
+import StandardContact, { type ContactInfoItem } from "../components/common/contact/StandardContact";
+import { EmailIcon, PhoneIcon, OfficeIcon, DirectionIcon } from "../components/common/icons";
+
+const contactItems: ContactInfoItem[] = [
+  {
+    icon: EmailIcon,
+    title: "Email",
+    description: "Send us a message",
+    action: {
+      label: "hello@education.com",
+      href: "mailto:hello@education.com",
+      type: "link"
+    }
+  },
+  {
+    icon: PhoneIcon,
+    title: "Phone",
+    description: "Call us anytime",
+    action: {
+      label: "+61 2 9000 0000",
+      href: "tel:+61290000000",
+      type: "link"
+    }
+  },
+  {
+    icon: OfficeIcon,
+    title: "Office",
+    description: "123 Main Street, Dhaka 1205, Bangladesh",
+    action: {
+      label: "Get Directions",
+      href: "#",
+      type: "button",
+      icon: DirectionIcon
+    }
+  }
+];
 
 const educationHeading = "Build skills that move your career forward";
 ---
@@ -46,6 +82,18 @@ const educationHeading = "Build skills that move your career forward";
       primaryCtaText="Enroll Now"
       secondaryCtaText="View Curriculum"
       buttonRadius="16px"
+    />
+    <StandardContact
+      tagline="Connect"
+      heading="Get in touch"
+      description="Have questions about our properties or services? We're here to help."
+      imageSrc="https://api.builder.io/api/v1/image/assets/TEMP/b4d9047ef5262741e8adacfeb08d35c5a677520b?width=1600"
+      primaryColor="#0A0A0A"
+      taglineBackgroundColor="#8B5CF6"
+      taglineTextColor="#FFFFFF"
+      sectionClassName="bg-[#EEF2FF]"
+      buttonRadius="16px"
+      contactInfo={contactItems}
     />
   </body>
 </html>

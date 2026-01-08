@@ -1,7 +1,9 @@
 import { useState } from "react";
-import MenuIcon from "@/components/icons/MenuIcon";
-import ChevronDownIcon from "@/components/icons/ChevronDownIcon";
-import CloseIcon from "@/components/icons/CloseIcon";
+import {
+  MenuIcon,
+  ChevronDownIcon,
+  CloseIcon,
+} from "@/components/common/icons";
 import Button from "@/components/ui/Button";
 
 interface HeaderProps {
