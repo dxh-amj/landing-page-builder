@@ -4,6 +4,7 @@ import { StandardHeader } from "../components/common/header/index";
 import { CenteredHero } from "../components/common/hero/index";
 import StandardContact, { type ContactInfoItem } from "../components/common/contact/StandardContact";
 import { EmailIcon, PhoneIcon, OfficeIcon, DirectionIcon } from "../components/common/icons";
+import { SplitCta } from "../components/common/cta/index";
 
 const contactItems: ContactInfoItem[] = [
   {
@@ -94,6 +95,17 @@ const educationHeading = "Build skills that move your career forward";
       sectionClassName="bg-[#EEF2FF]"
       buttonRadius="16px"
       contactInfo={contactItems}
+    />
+    <SplitCta
+      title="Ready to transform your career"
+      description="Join thousands who've already taken the first step toward their goals."
+      primaryActionText="Get Started"
+      secondaryActionText="View Curriculum"
+      imageUrl="/images/cta/product_bg.png"
+      imageAlt="Education transformation"
+      primaryColor="#4F46E5"
+      backgroundColor="#EEF2FF"
+      buttonRadius="16px"
     />
   </body>
 </html>

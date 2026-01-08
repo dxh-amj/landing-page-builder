@@ -1,2 +1,2 @@
-export { default as CtaBusiness } from "./CtaBusiness";
-export { default as CtaRestaurant } from "./CtaRestaurant";
+export { default as SplitCta } from "./SplitCta";
+export { default as ImageCta } from "./ImageCta";

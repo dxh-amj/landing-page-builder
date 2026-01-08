@@ -2,7 +2,7 @@
 import "../styles/global.css";
 import { StandardHeader } from "../components/common/header/index";
 import { CenteredHero } from "../components/common/hero/index";
-import { CtaBusiness } from "../components/common/cta/index";
+import { SplitCta } from "../components/common/cta/index";
 ---
 
 <!doctype html>
@@ -38,15 +38,16 @@ import { CtaBusiness } from "../components/common/cta/index";
       secondaryCtaText="Learn more"
       buttonRadius="8px"
     />
-    <CtaBusiness
-      title="Let’s Turn Your Ideas Into Results"
+    <SplitCta
+      title="Let's Turn Your Ideas Into Results"
       description="Talk to our experts and discover how we can support your goals with proven strategies and modern solutions."
       primaryActionText="Get Started"
       secondaryActionText="View Services"
       imageUrl="/images/cta/business_bg.png"
       imageAlt="Business transformation"
-      imageWidth={600}
-      imageHeight={400}
+      primaryColor="#1E4ED8"
+      backgroundColor="#E9EDFB"
+      buttonRadius="8px"
     />
   </body>
 </html>

@@ -4,6 +4,7 @@ import { CenteredNavHeader } from "../components/common/header/index";
 import { SplitHero } from "../components/common/hero/index";
 import StandardContact, { type ContactInfoItem } from "../components/common/contact/StandardContact";
 import { EmailIcon, PhoneIcon, OfficeIcon, DirectionIcon } from "../components/common/icons";
+import { ImageCta } from "../components/common/cta/index";
 
 const contactItems: ContactInfoItem[] = [
   {
@@ -111,6 +112,15 @@ const bodyStyle = {
       buttonRadius="12px"
       taglineBackgroundColor="#D1FAE5"
       contactInfo={contactItems}
+    />
+    <ImageCta
+      title="Ready to find your property"
+      description="Schedule a free consultation with our team and take the first step toward your next investment."
+      primaryActionText="Consult Us"
+      secondaryActionText="Learn More"
+      imageUrl="/images/cta/product_bg.png"
+      primaryColor="#059669"
+      buttonRadius="12px"
     />
   </body>
 </html>

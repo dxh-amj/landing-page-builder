@@ -4,6 +4,7 @@ import { CenteredNavHeader } from "../components/common/header/index";
 import RestaurantHero from "../components/designs/restaurant/RestaurantHero";
 import StandardContact, { type ContactInfoItem } from "../components/common/contact/StandardContact";
 import { EmailIcon, PhoneIcon, OfficeIcon, DirectionIcon } from "../components/common/icons";
+import { ImageCta } from "../components/common/cta/index";
 
 const contactItems: ContactInfoItem[] = [
   {
@@ -73,6 +74,16 @@ const brandFont = "cursive"; // Placeholder, will set styling in component prop 
       buttonRadius="100px"
     />
     <RestaurantHero client:load buttonRadius="100px" />
+      <ImageCta
+      title="Reserve Your Table Today"
+      description="Experience authentic Bangladeshi cuisine in a warm, welcoming atmosphere. Book now for a memorable dining experience."
+      primaryActionText="Book a Table"
+      secondaryActionText="View Menu"
+      imageUrl="/images/cta/restaurant_bg.jpg"
+      primaryColor="#EA580C"
+      secondaryColor="#EA580C"
+      buttonRadius="100px"
+    />
     <StandardContact
       tagline="Reach us"
       heading="Get in touch"
@@ -82,5 +93,6 @@ const brandFont = "cursive"; // Placeholder, will set styling in component prop 
       buttonRadius="100px"
       contactInfo={contactItems}
     />
+  
   </body>
 </html>
