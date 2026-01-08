@@ -2,7 +2,42 @@
 import "../styles/global.css";
 import { CenteredNavHeader } from "../components/common/header/index";
 import RestaurantHero from "../components/designs/restaurant/RestaurantHero";
-import { CtaRestaurant } from "../components/common/cta";
+import StandardContact, { type ContactInfoItem } from "../components/common/contact/StandardContact";
+import { EmailIcon, PhoneIcon, OfficeIcon, DirectionIcon } from "../components/common/icons";
+
+const contactItems: ContactInfoItem[] = [
+  {
+    icon: EmailIcon,
+    title: "Email",
+    description: "Send us a message",
+    action: {
+      label: "hello@restaurant.com",
+      href: "mailto:hello@restaurant.com",
+      type: "link"
+    }
+  },
+  {
+    icon: PhoneIcon,
+    title: "Phone",
+    description: "Call us during business hours",
+    action: {
+      label: "+880 13091 52407",
+      href: "tel:+8801309152407",
+      type: "link"
+    }
+  },
+  {
+    icon: OfficeIcon,
+    title: "Office",
+    description: "123 Main Street, Dhaka 1205, Bangladesh",
+    action: {
+      label: "Get Direction",
+      href: "#",
+      type: "button",
+      icon: DirectionIcon
+    }
+  }
+];
 
 const brandFont = "cursive"; // Placeholder, will set styling in component prop if needed or load font
 // This is a refined demo page for the restaurant template.
@@ -38,14 +73,14 @@ const brandFont = "cursive"; // Placeholder, will set styling in component prop 
       buttonRadius="100px"
     />
     <RestaurantHero client:load buttonRadius="100px" />
-    <CtaRestaurant
-      title="Ready to taste something real?"
-      description="Join us for a meal that matters, made the way it should be."
-      primaryActionText="Order Now"
-      secondaryActionText="Reserve Seat"
+    <StandardContact
+      tagline="Reach us"
+      heading="Get in touch"
+      description="We're here to answer your questions and take your order anytime."
+      imageSrc="https://api.builder.io/api/v1/image/assets/TEMP/b4d9047ef5262741e8adacfeb08d35c5a677520b?width=1600"
       primaryColor="#EA580C"
-      imageUrl="/images/cta/restaurant_bg.jpg"
       buttonRadius="100px"
+      contactInfo={contactItems}
     />
   </body>
 </html>
