@@ -5,6 +5,8 @@ import { CenteredHero } from "../components/common/hero/index";
 import StandardContact, { type ContactInfoItem } from "../components/common/contact/StandardContact";
 import { EmailIcon, PhoneIcon, OfficeIcon, DirectionIcon } from "../components/common/icons";
 import { SplitCta } from "../components/common/cta/index";
+import FeatureShowcase from "../components/common/features/FeatureShowcase";
+import { type ShowcaseCardData } from "../components/common/features/ShowcaseCard";
 import {StandardTestimonial} from "../components/common/testimonial/index";
 
 const testimonialData = [
@@ -93,6 +95,33 @@ const contactItems: ContactInfoItem[] = [
 ];
 
 const educationHeading = "Build skills that move your career forward";
+
+const educationFeatures: ShowcaseCardData[] = [
+  {
+    title: "Expert-led instruction",
+    description: "Learn directly from instructors with real industry experience.",
+    imageSrc: "/images/education/classes.jpg",
+    badgeText: "Classes",
+    buttonText: "Learn more",
+    layout: "vertical",
+  },
+  {
+    title: "Practical assignments",
+    description: "Build a portfolio with work that matters to employers.",
+    imageSrc: "/images/education/projects.jpg",
+    badgeText: "Projects",
+    buttonText: "Build with us",
+    layout: "horizontal",
+  },
+  {
+    title: "Career guidance",
+    description: "Get help landing your next role with dedicated support.",
+    imageSrc: "/images/education/support.jpg",
+    badgeText: "Support",
+    buttonText: "Advance in career",
+    layout: "horizontal",
+  },
+];
 ---
 
 <!doctype html>
@@ -135,6 +164,16 @@ const educationHeading = "Build skills that move your career forward";
       primaryCtaText="Enroll Now"
       secondaryCtaText="View Curriculum"
       buttonRadius="16px"
+    />
+    <FeatureShowcase
+      tagline="Learning"
+      heading="What you will master"
+      description="Gain practical skills taught by working professionals in your field."
+      primaryColor="#4F46E5"
+      backgroundColor="#EDEDFC"
+      buttonRadius="100px"
+      badgeBackground="linear-gradient(95deg, #B0ACFF -26.16%, #8982FF 142.98%)"
+      features={educationFeatures}
     />
     <StandardTestimonial 
       client:visible

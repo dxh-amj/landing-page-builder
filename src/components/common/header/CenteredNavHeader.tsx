@@ -75,8 +75,13 @@ export default function CenteredNavHeader({
               <a
                 key={item.label}
                 href={item.href}
-                style={navStyle}
-                className="hover:opacity-70 transition-colors whitespace-nowrap"
+                style={
+                  {
+                    ...navStyle,
+                    "--hover-color": primaryColor,
+                  } as React.CSSProperties
+                }
+                className="transition-colors whitespace-nowrap hover:!text-[var(--hover-color)]"
               >
                 {item.label}
               </a>
@@ -140,8 +145,14 @@ export default function CenteredNavHeader({
                 <a
                   key={item.label}
                   href={item.href}
-                  style={{ ...navStyle, fontSize: "18px" }}
-                  className="hover:opacity-70 transition-colors"
+                  style={
+                    {
+                      ...navStyle,
+                      fontSize: "18px",
+                      "--hover-color": primaryColor,
+                    } as React.CSSProperties
+                  }
+                  className="transition-colors hover:!text-[var(--hover-color)]"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {item.label}

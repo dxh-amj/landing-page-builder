@@ -4,6 +4,7 @@ import {
   FoundationIcon,
   ChevronRightIcon,
 } from "../../common/icons";
+import Button from "../../ui/Button";
 
 interface ProvenResultsProps {
   primaryColor?: string;
@@ -53,7 +54,7 @@ const ProvenResults: React.FC<ProvenResultsProps> = ({
                 Our approach combines market insight with practical execution.
               </p>
 
-              <div className="flex flex-col items-start gap-4 self-stretch">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 self-stretch">
                 {/* List Item 1 */}
                 <div className="flex flex-col py-2 items-start gap-4 self-stretch">
                   <BusinessChipIcon className="w-12 h-12" fill="#0A0A0A" />
@@ -86,22 +87,19 @@ const ProvenResults: React.FC<ProvenResultsProps> = ({
 
             {/* Actions */}
             <div className="flex items-center gap-6">
-              <button
-                className="group flex py-[10px] px-5 justify-center items-center gap-2 rounded-lg border bg-white transition-all duration-300 hover:!bg-[var(--hover-bg)] hover:!border-[var(--hover-bg)]"
+              <Button
+                variant="outline"
+                className="group transition-all duration-300 hover:!text-white hover:!bg-[var(--hover-bg)] hover:!border-[var(--hover-bg)]"
                 style={
                   {
                     borderColor: primaryColor,
+                    color: primaryColor,
                     "--hover-bg": primaryColor,
                   } as React.CSSProperties
                 }
               >
-                <span
-                  className="text-base font-semibold leading-[150%] transition-colors duration-300 group-hover:text-white"
-                  style={{ color: primaryColor }}
-                >
-                  Learn more
-                </span>
-              </button>
+                Learn more
+              </Button>
 
               <a
                 href="#"
